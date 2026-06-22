@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="es" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>XV de Camila — 18 de Julio 2026</title>
+  <meta name="description" content="Estás invitado/a a los XV de Camila. Sábado 18 de Julio de 2026, 22:00 hs. Mega Eventos Sur, Santos Lugares.">
+  
+  <!-- Open Graph / WhatsApp Preview -->
+  <meta property="og:title" content="XV de Camila 🎉">
+  <meta property="og:description" content="¡Estás invitado/a a mis XV! Sábado 18 de Julio de 2026 · 22:00 hs · Mega Eventos Sur">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="assets/camila-hero.png">
+  
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='80' font-size='80'>✨</text></svg>">
+</head>
+<body>
+
+  <!-- Scroll Progress Bar -->
+  <div id="scroll-progress"></div>
+
+  <!-- ============================================
+       LUXURY LOCK-SCREEN INTRO (DESLIZAR PARA REVELAR)
+       ============================================ -->
+  <div id="portal-screen">
+    <div class="intro-bg-overlay"></div>
+    <canvas id="portal-particles"></canvas>
+    
+    <!-- SVG Gradients Definition -->
+    <svg style="position: absolute; width: 0; height: 0; overflow: hidden;" aria-hidden="true">
+      <defs>
+        <linearGradient id="gold-gradient-svg" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#B8972E" />
+          <stop offset="50%" stop-color="#F3E7BF" />
+          <stop offset="100%" stop-color="#C5A039" />
+        </linearGradient>
+      </defs>
+    </svg>
+    
+    <div class="lockscreen-container">
+      <!-- Upper Section: Date & Time as a Clock -->
+      <div class="lockscreen-header">
+        <span class="lockscreen-event">XV AÑOS</span>
+        <h2 class="lockscreen-date">18.07.26</h2>
+        <p class="lockscreen-day">SÁBADO · 22:00 HS</p>
+      </div>
+      
+      <!-- Central Wax Seal Unlock Mechanism -->
+      <div class="lockscreen-seal-container">
+        <div class="seal-interactive-area">
+          <div class="seal-progress-svg-wrapper">
+            <svg class="seal-progress-svg" viewBox="0 0 100 100">
+              <circle class="seal-progress-bg" cx="50" cy="50" r="45"></circle>
+              <circle class="seal-progress-bar" id="seal-progress-bar" cx="50" cy="50" r="45"></circle>
+            </svg>
+          </div>
+          
+          <div class="interactive-wax-seal" id="lockscreen-seal" role="button" tabindex="0" aria-label="Mantener presionado para abrir invitación">
+            <div class="seal-outer-ripple"></div>
+            <div class="seal-body">
+              <span class="seal-monogram">C</span>
+              <span class="seal-subtext">XV</span>
+            </div>
+          </div>
+        </div>
+        
+        <p class="seal-instruction">Mantén presionado para abrir</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================
+       FLOATING MUSIC PLAYER
+       ============================================ -->
+  <div id="music-player" role="button" tabindex="0" aria-label="Reproducir/Pausar música" title="♪ Photograph — Ed Sheeran">
+    <div class="sound-wave">
+      <div class="bar"></div>
+      <div class="bar"></div>
+      <div class="bar"></div>
+      <div class="bar"></div>
+      <div class="bar"></div>
+    </div>
+  </div>
+
+  <!-- Hidden YouTube Player -->
+  <div id="youtube-player"></div>
+
+  <!-- Copy Feedback -->
+  <div class="copy-feedback" id="copy-feedback">✓ Alias copiado</div>
+
+  <!-- ============================================
+       MAIN CONTENT
+       ============================================ -->
+  <main id="main-content">
+    
+    <!-- Particle canvas (gold leaf — only visible after unlock) -->
+    <canvas id="particles-canvas"></canvas>
+
+    <!-- ── SECTION 2: INVITATION ── -->
+    <section id="invitation">
+      <!-- Giant background typography (split for parallax scrolling) -->
+      <div class="hero-bg-text-wrapper">
+        <div class="hero-bg-text" id="hero-bg-cam">CAM</div>
+        <div class="hero-bg-text" id="hero-bg-ila">ILA</div>
+      </div>
+      
+      <div class="editorial-invitation-container">
+        
+        <!-- Premium Arched Photo Frame -->
+        <div class="editorial-arch-wrapper reveal">
+          <div class="editorial-arch-glow"></div>
+          <div class="editorial-arch-frame">
+            <img src="assets/camila-actual.jpg" alt="Camila" class="editorial-photo parallax-img">
+          </div>
+          <!-- Overlapping interactive seal -->
+          <div class="floating-gold-seal" id="floating-seal" role="button" tabindex="0" aria-label="Tocar sello dorado">
+            <div class="seal-ring"></div>
+            <div class="seal-inner">XV</div>
+          </div>
+        </div>
+
+        <div class="editorial-content">
+          <div class="invitation-ornament reveal delay-1">
+            <span class="ornament-leaf">✦</span>
+          </div>
+          
+          <p class="invitation-text reveal delay-1">
+            Hay momentos en la vida que son irrepetibles, pero compartirlos con quienes más queremos los hace eternos. <br><br>
+            Te espero para vivir una noche mágica, llena de música, risas y recuerdos que guardaré por siempre en el corazón.
+          </p>
+          
+          <div class="invitation-signature reveal delay-2">Camila</div>
+        </div>
+
+        <!-- Scroll down indicator -->
+        <div class="scroll-down-indicator reveal delay-2">
+          <span class="scroll-line"></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── SECTION 3: EVENT DETAILS (Bento Grid) ── -->
+    <section id="event-details">
+      <div class="section-header reveal">
+        <h2 class="section-title">La Fiesta</h2>
+        <p class="section-subtitle">Cuándo y Dónde</p>
+      </div>
+  
+      <div class="bento-grid reveal delay-1">
+        <!-- Item 1: Animated Date Badge -->
+        <div class="bento-item bento-date reveal-scale">
+          <div class="bento-date-glow"></div>
+          <div class="bento-date-content">
+            <span class="bento-date-label">JULIO</span>
+            <span class="bento-date-number">18</span>
+            <span class="bento-date-year">2026</span>
+          </div>
+        </div>
+
+        <!-- Item 2: Interactive Clock -->
+        <div class="bento-item bento-clock reveal-scale delay-1">
+          <div class="bento-clock-wrapper">
+            <div class="bento-clock-face">
+              <div class="bento-clock-hand clock-hour" id="clock-hour"></div>
+              <div class="bento-clock-hand clock-minute" id="clock-minute"></div>
+              <div class="bento-clock-center"></div>
+            </div>
+            <div class="bento-clock-time">
+              <span class="bento-time-val">22:00</span>
+              <span class="bento-time-label">HS</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 3: Interactive Venue (Accordion) -->
+        <div class="bento-item bento-venue reveal-scale delay-2" id="bento-venue-btn" role="button" tabindex="0" aria-expanded="false" aria-label="Ver detalles de la ubicación">
+          <div class="bento-venue-header">
+            <div class="bento-venue-icon">🏰</div>
+            <div class="bento-venue-meta">
+              <h3 class="bento-venue-title">Mega Eventos Sur</h3>
+              <p class="bento-venue-subtitle">Av. Rodríguez Peña 1799, Santos Lugares</p>
+            </div>
+          </div>
+          <div class="bento-venue-accordion" id="bento-venue-details">
+            <div class="bento-venue-inner-content">
+              <p class="bento-venue-desc">
+                Un salón de gala de alta categoría preparado para vivir una noche inolvidable. Cuenta con estacionamiento propio y seguridad en la zona.
+              </p>
+            </div>
+          </div>
+          <div class="bento-venue-chevron">
+            <span class="chevron-arrow">↓</span>
+          </div>
+        </div>
+
+        <!-- Item 4: Interactive Map Arch -->
+        <div class="bento-item bento-map reveal-scale delay-3" id="bento-map-card">
+          <div class="bento-map-overlay" id="bento-map-overlay">
+            <div class="bento-map-glow"></div>
+            <div class="bento-map-overlay-content">
+              <span class="bento-map-icon">📍</span>
+              <span class="bento-map-text">Tocar para explorar mapa</span>
+            </div>
+          </div>
+          <div class="bento-map-container">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3282.9!2d-58.5637741!3d-34.6423607!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcc8de0a1dd5a7%3A0x5e0df1cde7f0ae45!2sAv.%20Rodr%C3%ADguez%20Pe%C3%B1a%201799%2C%20B1676%20Santos%20Lugares%2C%20Provincia%20de%20Buenos%20Aires!5e0!3m2!1ses-419!2sar!4v1700000000000!5m2!1ses-419!2sar"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              title="Ubicación de Mega Eventos Sur">
+            </iframe>
+          </div>
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="bento-actions reveal delay-4">
+        <a href="#" id="calendar-btn" class="btn btn-gold" onclick="addToCalendar(); return false;">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zm0-12H5V6h14v2z"/></svg>
+          Agendar Fiesta
+        </a>
+        <a href="https://maps.app.goo.gl/Som7TfaeiDWK1oZn6" target="_blank" rel="noopener" class="btn btn-outline">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5S13.38 11.5 12 11.5z"/></svg>
+          Cómo Llegar
+        </a>
+      </div>
+    </section>
+
+    <!-- ── SECTION: COUNTDOWN ── -->
+    <section id="countdown">
+      <div class="countdown-backdrop-glow"></div>
+      
+      <div class="section-header reveal">
+        <h2 class="section-title">Cuenta Regresiva</h2>
+        <p class="section-subtitle">El gran día está llegando</p>
+      </div>
+      
+      <div class="countdown-container reveal delay-1">
+        <!-- Celestial Orbit rings behind -->
+        <div class="countdown-orbit-ring ring-outer"></div>
+        <div class="countdown-orbit-ring ring-inner"></div>
+        
+        <div class="countdown-grid">
+          <!-- Days -->
+          <div class="countdown-card">
+            <div class="countdown-card-inner">
+              <div class="countdown-value" id="countdown-days">00</div>
+              <div class="countdown-label">Días</div>
+            </div>
+          </div>
+          <!-- Hours -->
+          <div class="countdown-card">
+            <div class="countdown-card-inner">
+              <div class="countdown-value" id="countdown-hours">00</div>
+              <div class="countdown-label">Hs</div>
+            </div>
+          </div>
+          <!-- Minutes -->
+          <div class="countdown-card">
+            <div class="countdown-card-inner">
+              <div class="countdown-value" id="countdown-minutes">00</div>
+              <div class="countdown-label">Min</div>
+            </div>
+          </div>
+          <!-- Seconds -->
+          <div class="countdown-card">
+            <div class="countdown-card-inner">
+              <div class="countdown-value" id="countdown-seconds">00</div>
+              <div class="countdown-label">Seg</div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Interactive pulse button -->
+        <div class="countdown-hype-wrapper">
+          <button class="btn btn-gold btn-hype" id="hype-btn" onclick="triggerHypeConfetti(event)">
+            <span class="hype-emoji">✨</span> ¡Qué emoción!
+          </button>
+          <p class="hype-counter-text"><span id="hype-count">0</span> personas están ansiosas por la fiesta</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── SECTION 4: DRESS CODE ── -->
+    <section id="dresscode">
+      <div class="dresscode-wrapper">
+        <div class="section-header reveal">
+          <h2 class="section-title">Dress Code</h2>
+          <p class="section-subtitle">Cómo Vestir</p>
+        </div>
+        
+        <div class="dresscode-card reveal delay-1">
+          <div class="dresscode-inner">
+            <!-- Luxury Toggle Switch -->
+            <div class="dresscode-toggle-wrapper">
+              <div class="dresscode-toggle-btn active" id="toggle-ellas" role="button" tabindex="0" onclick="setDresscodeTab('ellas')">
+                <span>Ellas</span>
+              </div>
+              <div class="dresscode-toggle-btn" id="toggle-ellos" role="button" tabindex="0" onclick="setDresscodeTab('ellos')">
+                <span>Ellos</span>
+              </div>
+              <div class="dresscode-toggle-slider" id="toggle-slider"></div>
+            </div>
+            
+            <!-- Tab Content: Ellas -->
+            <div class="dresscode-content-tab active" id="content-ellas">
+              <div class="dresscode-icon-badge">👗</div>
+              <p class="dresscode-title">Gala & Elegancia</p>
+              <p class="dresscode-note">Vestido largo de fiesta. Lucite con tu mejor brillo en esta noche tan especial.</p>
+            </div>
+            
+            <!-- Tab Content: Ellos -->
+            <div class="dresscode-content-tab" id="content-ellos">
+              <div class="dresscode-icon-badge">👔</div>
+              <p class="dresscode-title">Traje Formal</p>
+              <p class="dresscode-note">Traje completo, saco y pantalón de vestir. Corbata o moño opcional para complementar el look.</p>
+            </div>
+            
+            <!-- Prohibited Colors (Avoid Section) -->
+            <div class="avoid-section">
+              <span class="avoid-label">
+                <span class="avoid-lock-icon">🔒</span>
+                Colores Reservados
+              </span>
+              <p class="avoid-desc">Por favor, evitar los siguientes tonos en tu vestimenta:</p>
+              <div class="avoid-colors">
+                <div class="color-swatch">
+                  <div class="color-circle-wrapper">
+                    <div class="color-circle white-color"></div>
+                    <div class="cross-line"></div>
+                  </div>
+                  <span class="color-name">Blanco</span>
+                </div>
+                <div class="color-swatch">
+                  <div class="color-circle-wrapper">
+                    <div class="color-circle gold"></div>
+                    <div class="cross-line"></div>
+                  </div>
+                  <span class="color-name">Dorado</span>
+                </div>
+                <div class="color-swatch">
+                  <div class="color-circle-wrapper">
+                    <div class="color-circle blue"></div>
+                    <div class="cross-line"></div>
+                  </div>
+                  <span class="color-name">Azul</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+ 
+    <!-- ── SECTION 5: GALLERY ── -->
+    <section id="gallery">
+      <div class="section-header reveal">
+        <h2 class="section-title">Mi Historia</h2>
+        <p class="section-subtitle">De Chiquita a Quinceañera</p>
+      </div>
+ 
+      <div class="gallery-container reveal delay-1">
+        <div class="timeline-gallery-wrapper">
+          <!-- The Arched Photo Frame -->
+          <div class="timeline-gallery-display">
+            <div class="gallery-frame-glow"></div>
+            <div class="gallery-frame-border">
+              <div class="timeline-slides-container">
+                <!-- Slide 0: Bebé -->
+                <div class="timeline-slide active" data-index="0">
+                  <img src="assets/camila-bebe.png" alt="Camila de bebé" class="timeline-photo">
+                  <div class="timeline-caption">Mis primeros pasos...</div>
+                </div>
+                <!-- Slide 1: Pre-15 (Placeholder) -->
+                <div class="timeline-slide" data-index="1">
+                  <img src="assets/placeholder-historia.png" alt="Cargando recuerdo de Camila" class="timeline-photo">
+                  <div class="timeline-caption">Cargando foto... ✨</div>
+                </div>
+                <!-- Slide 2: Hoy -->
+                <div class="timeline-slide" data-index="2">
+                  <img src="assets/camila-actual.jpg" alt="Camila hoy" class="timeline-photo">
+                  <div class="timeline-caption">Hoy ✨</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Timeline Slider Control -->
+          <div class="timeline-control-container">
+            <div class="timeline-axis-line">
+              <!-- Progress Fill Bar -->
+              <div class="timeline-axis-progress" id="timeline-progress"></div>
+              
+              <!-- Timeline Nodes -->
+              <div class="timeline-node active" data-index="0" onclick="setTimelineIndex(0)">
+                <span class="timeline-node-dot"></span>
+                <span class="timeline-node-label">2011</span>
+              </div>
+              <div class="timeline-node" data-index="1" onclick="setTimelineIndex(1)">
+                <span class="timeline-node-dot"></span>
+                <span class="timeline-node-label">Creciendo</span>
+              </div>
+              <div class="timeline-node" data-index="2" onclick="setTimelineIndex(2)">
+                <span class="timeline-node-dot"></span>
+                <span class="timeline-node-label">15 Años</span>
+              </div>
+              
+              <!-- Drag Handle (Monogram Seal) -->
+              <div class="timeline-handle" id="timeline-handle">
+                <div class="timeline-handle-inner">C</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+ 
+    <!-- ── SECTION 6: MUSIC / SPOTIFY ── -->
+    <section id="music">
+      <div class="music-notes">
+        <span class="music-note">♪</span>
+        <span class="music-note">♫</span>
+        <span class="music-note">♬</span>
+        <span class="music-note">♩</span>
+        <span class="music-note">♪</span>
+      </div>
+ 
+      <div class="section-header reveal">
+        <h2 class="section-title">Música</h2>
+        <p class="section-subtitle">¿Qué canción no puede faltar?</p>
+      </div>
+      
+      <p class="music-text reveal delay-1">
+        Ayúdame a armar la playlist perfecta para que bailemos toda la noche.
+      </p>
+ 
+      <!-- Music Bento Grid -->
+      <div class="music-bento-grid reveal delay-2">
+        <!-- Card 1: Spotify Embed Player -->
+        <div class="bento-music-item bento-music-player">
+          <div class="spotify-embed">
+            <iframe 
+              style="border-radius:12px" 
+              src="https://open.spotify.com/embed/playlist/37i9dQZF1DXdPec7aLTmlC?utm_source=generator&theme=0" 
+              width="100%" 
+              height="352" 
+              frameBorder="0" 
+              allowfullscreen="" 
+              allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+              loading="lazy"
+              title="Playlist de Spotify">
+            </iframe>
+          </div>
+        </div>
+        
+        <!-- Card 2: Interactive Jukebox Form -->
+        <div class="bento-music-item bento-jukebox">
+          <form class="jukebox-form" id="jukebox-form" onsubmit="submitSongSuggestion(event)">
+            <h3 class="jukebox-title">Sugerir Canción</h3>
+            <p class="jukebox-desc">Pide tu tema favorito para que suene en la pista:</p>
+            
+            <div class="form-group">
+              <input type="text" id="music-song" name="song" required placeholder=" ">
+              <label for="music-song">Canción y Artista</label>
+              <div class="bar-line"></div>
+            </div>
+            
+            <div class="jukebox-vibes-section">
+              <span class="vibes-label">Vibe de la canción:</span>
+              <div class="vibes-options">
+                <div class="vibe-option active" onclick="setVibeOption(this)">
+                  <input type="radio" name="vibe" value="Para bailar" checked style="display:none;">
+                  <span class="vibe-emoji">🕺</span>
+                  <span class="vibe-text">Para bailar</span>
+                </div>
+                <div class="vibe-option" onclick="setVibeOption(this)">
+                  <input type="radio" name="vibe" value="Para cantar" style="display:none;">
+                  <span class="vibe-emoji">🎤</span>
+                  <span class="vibe-text">Para cantar</span>
+                </div>
+                <div class="vibe-option" onclick="setVibeOption(this)">
+                  <input type="radio" name="vibe" value="El hit" style="display:none;">
+                  <span class="vibe-emoji">💥</span>
+                  <span class="vibe-text">El hit</span>
+                </div>
+              </div>
+            </div>
+            
+            <button type="submit" class="btn btn-gold w-full" style="margin-top: 15px;">
+              <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/></svg>
+              Sugerir Canción
+            </button>
+          </form>
+          
+          <div class="jukebox-success" id="jukebox-success">
+            <div class="music-success-circle">
+              <span class="success-note-icon">🎵</span>
+            </div>
+            <h3>¡Sugerencia Enviada!</h3>
+            <p class="jukebox-success-msg">La sugerencia ha sido enviada con éxito. ¡Prepárate para bailar! 🎉</p>
+          </div>
+        </div>
+      </div>
+    </section>
+ 
+    <!-- ── SECTION 7: GIFT ── -->
+    <section id="gift">
+      <div class="section-header reveal">
+        <h2 class="section-title">Regalito</h2>
+        <p class="section-subtitle">Si deseas hacerme un presente</p>
+      </div>
+ 
+      <div class="gift-bento-grid reveal delay-1">
+        <!-- Card 1: The Message -->
+        <div class="bento-gift-item bento-gift-message">
+          <div class="gift-icon-wrapper">
+            <span class="gift-floating-icon">🎁</span>
+          </div>
+          <div class="gift-text-intro">
+            El mejor regalo es tu presencia en este día tan especial. <br>
+            Pero si deseas realizar un obsequio, puedes hacerlo a través de transferencia bancaria:
+          </div>
+        </div>
+        
+        <!-- Card 2: The Bank Card -->
+        <div class="bento-gift-item bento-gift-card gold-shimmer" onclick="copyAlias(event)" role="button" tabindex="0" aria-label="Copiar alias de cuenta camiicolman.mp">
+          <div class="gift-card-bg"></div>
+          <div class="gift-card-content">
+            <div class="gift-card-header">
+              <span class="card-chip"></span>
+              <span class="card-brand">CAMILA XV</span>
+            </div>
+            
+            <div class="gift-card-body">
+              <span class="card-label">Alias de cuenta</span>
+              <span class="card-number" id="alias-text">camiicolman.mp</span>
+            </div>
+            
+            <div class="gift-card-footer">
+              <div class="card-holder">
+                <span>Mercado Pago</span>
+                <strong>Camila Colman</strong>
+              </div>
+              <button class="btn-copy-card" id="copy-alias" aria-label="Copiar alias">
+                Copiar
+                <svg class="copy-icon" viewBox="0 0 24 24">
+                  <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+ 
+    <!-- ── SECTION 8: RSVP ── -->
+    <section id="rsvp">      <div class="rsvp-card-wrapper reveal delay-1">
+        <div class="rsvp-card">
+          <!-- Wax Seal Toggle Buttons -->
+          <div class="rsvp-toggle-container">
+            <div class="rsvp-toggle-btn active" id="rsvp-btn-yes" role="button" tabindex="0" onclick="setRsvpAttendance(true)">
+              <span class="rsvp-toggle-icon">✨</span>
+              <span class="rsvp-toggle-text">Sí, Asistiré</span>
+            </div>
+            <div class="rsvp-toggle-btn" id="rsvp-btn-no" role="button" tabindex="0" onclick="setRsvpAttendance(false)">
+              <span class="rsvp-toggle-icon">✉</span>
+              <span class="rsvp-toggle-text">No puedo ir</span>
+            </div>
+          </div>
+          
+          <form class="rsvp-form" id="rsvp-form" onsubmit="submitRsvpForm(event)">
+            <!-- Attendance Hidden Input -->
+            <input type="hidden" id="rsvp-attending" name="attending" value="true">
+            
+            <div class="form-group">
+              <input type="text" id="rsvp-name" name="name" required placeholder=" ">
+              <label for="rsvp-name">Tu Nombre y Apellido</label>
+              <div class="bar-line"></div>
+            </div>
+            
+            <!-- Guest Count Section (Will be toggled) -->
+            <div class="form-group select-group" id="rsvp-guests-container">
+              <select id="rsvp-guests" name="guests" required>
+                <option value="" disabled selected hidden></option>
+                <option value="1">1 persona</option>
+                <option value="2">2 personas</option>
+                <option value="3">3 personas</option>
+                <option value="4">4 personas</option>
+                <option value="5">5 o más personas</option>
+              </select>
+              <label for="rsvp-guests">¿Cuántos asisten?</label>
+              <div class="bar-line"></div>
+            </div>
+            
+            <div class="form-group">
+              <textarea id="rsvp-message" name="message" placeholder=" "></textarea>
+              <label for="rsvp-message" id="rsvp-message-label">Un mensaje para mí (opcional)</label>
+              <div class="bar-line"></div>
+            </div>
+  
+            <button type="submit" class="btn btn-gold w-full" id="rsvp-submit-btn">
+              <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/>
+              </svg>
+              <span id="rsvp-submit-text">Confirmar asistencia</span>
+            </button>
+          </form>
+  
+          <div class="rsvp-success" id="rsvp-success">
+            <div class="check-circle-wrapper">
+              <div class="check-circle">
+                <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+              </div>
+            </div>
+            <h3 id="rsvp-success-title">¡Gracias por confirmar!</h3>
+            <p id="rsvp-success-msg">Tu asistencia ha sido enviada con éxito 🎉</p>
+          </div>
+        </div>
+      </div>
+    </section>
+ 
+    <!-- ── SECTION 9: CLOSING ── -->
+    <section id="closing">
+      <div class="closing-content">
+        <div class="closing-monogram reveal">
+          <span>C</span>
+        </div>
+        
+        <p class="closing-text reveal delay-1">
+          No sería lo mismo sin ti. <br>
+          Acompáñame a celebrar este día único.
+        </p>
+ 
+        <p class="closing-signature reveal delay-2">Camila</p>
+        <div class="closing-heart reveal delay-3">✦</div>
+      </div>
+    </section>
+ 
+  </main>
+ 
+  <!-- Footer -->
+  <footer class="site-footer">
+    <p>© 2026 — Diseñado con amor para Camila ✨</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
