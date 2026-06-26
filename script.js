@@ -6,7 +6,7 @@
   'use strict';
 
   /* ── CONFIG ── */
-  const EVENT_DATE = new Date('2026-07-18T22:00:00-03:00'); // Sábado 18 Jul 2026, 22 hs (Argentina)
+  const EVENT_DATE = new Date('2026-07-17T22:00:00-03:00'); // Viernes 17 Jul 2026, 22 hs (Argentina)
   const YOUTUBE_VIDEO_ID = 'nSDgHBxUbVQ'; // Photograph — Ed Sheeran
 
   /* ── DOM ELEMENTS ── */
@@ -683,22 +683,106 @@
   /* ============================================
      7. ADD TO CALENDAR
      ============================================ */
-  window.addToCalendar = function () {
-    const title = 'XV de Camila 🎉';
-    const startDate = '20260718T220000';
-    const endDate = '20260719T050000';
-    const location = 'Mega Eventos Sur, Av. Rodríguez Peña 1799, Santos Lugares, Buenos Aires';
-    const description = '¡Fiesta de XV de Camila! Dress code: Elegante. Evitar Azul, Dorado y Blanco.';
+  function downloadIcs(title, startDate, endDate, location, description) {
+    const icsContent = [
+      'BEGIN:VCALENDAR',
+      'VERSION:2.0',
+      'PRODID:-//XV de Camila//NONSGML v1.0//ES',
+      'BEGIN:VEVENT',
+      'UID:xv-de-camila-20260717',
+      'DTSTAMP:20260626T220000',
+      'DTSTART:' + startDate,
+      'DTEND:' + endDate,
+      'SUMMARY:' + title,
+      'DESCRIPTION:' + description,
+      'LOCATION:' + location,
+      'END:VEVENT',
+      'END:VCALENDAR'
+    ].join('\r\n');
 
-    const calendarUrl =
-      'https://calendar.google.com/calendar/render?action=TEMPLATE' +
+    const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8;' });
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.setAttribute('download', 'camila-xv.ics');
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }
+
+  function showCalendarModal(title, startDate, endDate, location, description) {
+    let modal = $('#calendar-modal');
+    if (!modal) {
+      modal = document.createElement('div');
+      modal.id = 'calendar-modal';
+      modal.className = 'custom-modal';
+      modal.innerHTML = `
+        <div class="modal-overlay"></div>
+        <div class="modal-content">
+          <button class="modal-close">&times;</button>
+          <h3 class="modal-title">Agendar Evento</h3>
+          <p class="modal-subtitle">Selecciona tu calendario</p>
+          <div class="modal-buttons">
+            <a href="#" class="modal-btn btn-google" id="modal-btn-google">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zm0-12H5V6h14v2z"/></svg>
+              Google Calendar
+            </a>
+            <a href="#" class="modal-btn btn-ical" id="modal-btn-ical">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM19 18H6c-2.21 0-4-1.79-4-4 0-2.05 1.53-3.76 3.56-3.97l1.07-.11.5-.95C8.08 7.14 9.94 6 12 6c2.62 0 4.88 1.86 5.39 4.43l.3 1.5 1.53.11c1.56.1 2.78 1.41 2.78 2.96 0 1.65-1.35 3-3 3z"/></svg>
+              Apple / iCal (.ics)
+            </a>
+          </div>
+        </div>
+      `;
+      document.body.appendChild(modal);
+
+      modal.querySelector('.modal-overlay').addEventListener('click', closeCalendarModal);
+      modal.querySelector('.modal-close').addEventListener('click', closeCalendarModal);
+    }
+
+    const googleUrl = 'https://calendar.google.com/calendar/render?action=TEMPLATE' +
       '&text=' + encodeURIComponent(title) +
       '&dates=' + startDate + '/' + endDate +
       '&details=' + encodeURIComponent(description) +
       '&location=' + encodeURIComponent(location) +
       '&sf=true&output=xml';
 
-    window.open(calendarUrl, '_blank');
+    modal.querySelector('#modal-btn-google').onclick = function (e) {
+      e.preventDefault();
+      window.open(googleUrl, '_blank');
+      closeCalendarModal();
+    };
+
+    modal.querySelector('#modal-btn-ical').onclick = function (e) {
+      e.preventDefault();
+      downloadIcs(title, startDate, endDate, location, description);
+      closeCalendarModal();
+    };
+
+    setTimeout(() => modal.classList.add('show'), 10);
+  }
+
+  function closeCalendarModal() {
+    const modal = $('#calendar-modal');
+    if (modal) {
+      modal.classList.remove('show');
+    }
+  }
+
+  window.addToCalendar = function () {
+    const title = 'XV de Camila 🎉';
+    const startDate = '20260717T220000'; // Viernes 17 de Julio
+    const endDate = '20260718T050000';   // Sábado 18 de Julio 05:00
+    const location = 'Mega Eventos Sur, Av. Rodríguez Peña 1799, Santos Lugares, Buenos Aires';
+    const description = '¡Fiesta de XV de Camila! Dress code: Elegante. Evitar Azul, Dorado y Blanco.';
+
+    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || 
+                  (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+
+    if (isIOS) {
+      downloadIcs(title, startDate, endDate, location, description);
+    } else {
+      showCalendarModal(title, startDate, endDate, location, description);
+    }
   };
 
   /* ============================================

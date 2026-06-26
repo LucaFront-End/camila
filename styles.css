@@ -2832,4 +2832,144 @@ button {
   color: var(--gold-light);
 }
 
+/* ============================================
+   CALENDAR SELECTOR MODAL (iPhone & Desktop)
+   ============================================ */
+.custom-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.custom-modal.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(15, 19, 30, 0.75);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.modal-content {
+  position: relative;
+  background: var(--midnight);
+  border: 1px solid var(--gold);
+  border-radius: 20px;
+  padding: 40px 30px;
+  width: 90%;
+  max-width: 400px;
+  text-align: center;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6);
+  transform: translateY(30px);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 2;
+}
+
+.custom-modal.show .modal-content {
+  transform: translateY(0);
+}
+
+.modal-close {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  background: none;
+  border: none;
+  color: var(--gold-light);
+  font-size: 28px;
+  cursor: pointer;
+  line-height: 1;
+  transition: color 0.3s ease;
+}
+
+.modal-close:hover {
+  color: var(--white);
+}
+
+.modal-title {
+  font-family: var(--font-display);
+  color: var(--gold-light);
+  font-size: 1.35rem;
+  margin-bottom: 8px;
+  letter-spacing: 2px;
+}
+
+.modal-subtitle {
+  font-family: var(--font-sans);
+  color: rgba(250, 246, 240, 0.6);
+  font-size: 0.75rem;
+  margin-bottom: 25px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.modal-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.modal-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 15px 24px;
+  border-radius: 50px;
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 600;
+  transition: var(--transition-fast);
+  cursor: pointer;
+}
+
+.modal-btn svg {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+.btn-google {
+  background: var(--gold-foil);
+  color: var(--midnight);
+  border: 1px solid transparent;
+}
+
+.btn-google:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(197, 160, 57, 0.3);
+}
+
+.btn-ical {
+  background: transparent;
+  color: var(--gold-light);
+  border: 1.5px solid var(--gold);
+}
+
+.btn-ical:hover {
+  background: var(--charcoal);
+  color: var(--white);
+  border-color: var(--white);
+  transform: translateY(-2px);
+}
+
 
