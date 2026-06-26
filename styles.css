@@ -1284,6 +1284,11 @@ button {
   transform: translateY(0);
 }
 
+.dresscode-content-single {
+  display: block;
+  width: 100%;
+}
+
 @keyframes fadeInSlide {
   from {
     opacity: 0;

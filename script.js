@@ -1199,30 +1199,7 @@
     });
   }
 
-  // 4. Dresscode Tab Switch
-  window.setDresscodeTab = function(tab) {
-    const toggleEllas = document.getElementById('toggle-ellas');
-    const toggleEllos = document.getElementById('toggle-ellos');
-    const slider = document.getElementById('toggle-slider');
-    const contentEllas = document.getElementById('content-ellas');
-    const contentEllos = document.getElementById('content-ellos');
-    
-    if (!toggleEllas || !toggleEllos || !slider || !contentEllas || !contentEllos) return;
-
-    if (tab === 'ellas') {
-      toggleEllas.classList.add('active');
-      toggleEllos.classList.remove('active');
-      slider.style.transform = 'translateX(0)';
-      contentEllas.classList.add('active');
-      contentEllos.classList.remove('active');
-    } else {
-      toggleEllas.classList.remove('active');
-      toggleEllos.classList.add('active');
-      slider.style.transform = 'translateX(100%)';
-      contentEllas.classList.remove('active');
-      contentEllos.classList.add('active');
-    }
-  };
+  // 4. Dresscode (Simplified to single content)
 
   // 5. Jukebox Vibe Selector
   window.setVibeOption = function(el) {
