@@ -1239,27 +1239,47 @@
       vibeVal = activeVibeOpt.value;
     }
     
-    // Build WhatsApp message
-    let waMessage = `🎵 *XV de Camila — Sugerencia de Canción*\n\n`;
-    waMessage += `💿 Tema: ${songName}\n`;
-    waMessage += `✨ Vibe: ${vibeVal}\n\n`;
-    waMessage += `¡Para que explote la pista! 💥`;
+    // Disable submit button during submit
+    const submitBtn = form.querySelector('button[type="submit"]');
+    let originalBtnHTML = '';
+    if (submitBtn) {
+      submitBtn.disabled = true;
+      originalBtnHTML = submitBtn.innerHTML;
+      submitBtn.innerHTML = 'Enviando...';
+    }
     
-    const phoneNumber = '5491100000000'; // Placeholder phone number
-    const waUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(waMessage)}`;
+    // Send to FormSubmit via AJAX fetch
+    fetch("https://formsubmit.co/ajax/camilacolman340@gmail.com", {
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify({
+        "Tema Sugerido": songName,
+        "Vibe / Ritmo": vibeVal,
+        _subject: `🎵 Sugerencia de Canción: ${songName}`,
+        _template: "table",
+        _language: "es"
+      })
+    })
+    .then(response => {
+      showJukeboxSuccess();
+    })
+    .catch(error => {
+      console.error('Error submitting song:', error);
+      showJukeboxSuccess();
+    });
     
-    // Hide form, show success state
-    form.style.display = 'none';
-    success.classList.add('show');
-    
-    // Confetti burst
-    const rect = success.getBoundingClientRect();
-    createConfettiBurst(rect.left + rect.width / 2, rect.top + rect.height / 2, 35);
-    
-    // Open WhatsApp
-    setTimeout(() => {
-      window.open(waUrl, '_blank');
-    }, 1200);
+    function showJukeboxSuccess() {
+      // Hide form, show success state
+      form.style.display = 'none';
+      success.classList.add('show');
+      
+      // Confetti burst
+      const rect = success.getBoundingClientRect();
+      createConfettiBurst(rect.left + rect.width / 2, rect.top + rect.height / 2, 35);
+    }
   };
 
 })();
